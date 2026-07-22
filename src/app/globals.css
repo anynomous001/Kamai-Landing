@@ -2,8 +2,187 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Kamai Precision & Artisanal Design System ──── */
+:root {
+  --background: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface-glass: rgba(247, 245, 240, 0.75);
+  --text-primary: #2D1B14;
+  --text-secondary: rgba(45, 27, 20, 0.65);
+  --accent: #EA580C;
+  --accent-hover: #C2410C;
+  --border: rgba(45, 27, 20, 0.12);
+  --shadow-custom: 0 8px 32px rgba(45, 27, 20, 0.08);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #2D1B14;
+  --surface: #1F110C;
+  --surface-glass: rgba(45, 27, 20, 0.75);
+  --text-primary: #F7F5F0;
+  --text-secondary: rgba(247, 245, 240, 0.65);
+  --accent: #EA580C;
+  --accent-hover: #F97316;
+  --border: rgba(247, 245, 240, 0.12);
+  --shadow-custom: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Keyframe Animations ─────────────────────────────────────────────── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.marquee-left  { animation: marquee-left 28s linear infinite; }
+.marquee-right { animation: marquee-right 28s linear infinite; }
+.pulse-dot     { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+/* Subtle Grain Noise Background */
+.noise-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
   body {
-    @apply bg-slate-900 text-stone-50 antialiased;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  [data-debug-wrapper="true"] {
+    display: contents !important;
   }
 }
+
+@layer components {
+  /* Typography Classes */
+  .headline-main {
+    font-family: var(--font-manrope), sans-serif;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+
+  .italic-serif {
+    font-family: var(--font-newsreader), Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* Glassmorphism Navigation */
+  .glass-nav {
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-custom);
+  }
+
+  /* Pill Buttons */
+  .btn-espresso {
+    background: var(--text-primary);
+    color: var(--background);
+    border-radius: 100px;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .btn-espresso:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-custom);
+  }
+
+  .btn-primary-orange {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-radius: 100px;
+    padding: 13px 30px;
+    font-size: 14px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary-orange:hover {
+    background: var(--accent-hover);
+    transform: scale(1.03);
+  }
+
+  .btn-pill-border {
+    background: transparent;
+    color: var(--text-primary);
+    border-radius: 100px;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-pill-border:hover {
+    background: var(--border);
+    transform: scale(1.02);
+  }
+
+  /* Bento & Card Components */
+  .kamai-bento-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-custom);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .kamai-bento-card:hover {
+    border-color: var(--accent);
+  }
+
+  .icon-wash {
+    background: rgba(234, 88, 12, 0.12);
+    color: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: rgba(45, 27, 20, 0.2); border-radius: 3px; }
