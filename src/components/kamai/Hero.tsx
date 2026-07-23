@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { MaskedLines, FadeUp } from "./Motion";
 
-const EASE = [0.76, 0, 0.24, 1];
+const EASE = [0.76, 0, 0.24, 1] as const;
 
 export default function Hero() {
   const ref = useRef(null);
@@ -20,7 +20,7 @@ export default function Hero() {
       className="relative pt-36 md:pt-40 pb-24 md:pb-32 overflow-hidden"
       data-testid="hero-section"
     >
-      {/* Radial Spotlight Backdrop */}
+      {/* radial spotlight */}
       <motion.div
         style={{ y: glowY }}
         aria-hidden
@@ -38,12 +38,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.4 }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)] shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
             Built for India&apos;s independent bakers.
-            <span className="text-[var(--text-secondary)]">(AD · PK · SM)</span>
+            <span className="text-[var(--text-secondary)] font-normal">(AD · PK · SM)</span>
           </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)] shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="pulse-dot absolute inset-0 rounded-full bg-emerald-500" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -53,12 +53,14 @@ export default function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <h1 className="text-center font-extrabold tracking-[-0.045em] leading-[0.95] text-[var(--text-primary)] text-[11vw] sm:text-[8vw] md:text-[7vw] lg:text-[104px]">
+        <h1 className="text-center font-extrabold tracking-[-0.045em] leading-[0.95] text-[var(--text-primary)] text-[13vw] sm:text-[9vw] md:text-[7.5vw] lg:text-[112px]">
           <MaskedLines
             lines={[
-              "Run Your Bakery.",
-              "Manage Every Order.",
-              "Grow Every Profit.",
+              <>Run Your Bakery.</>,
+              <>Manage Every Order.</>,
+              <>
+                Grow Every <span className="italic-serif text-[#EA580C]">Profit</span>.
+              </>,
             ]}
             delay={0.5}
             stagger={0.12}
@@ -76,7 +78,7 @@ export default function Hero() {
           <a
             href="#pricing"
             data-testid="hero-cta-primary"
-            className="group inline-flex items-center gap-2 rounded-full btn-espresso px-7 py-3.5 text-sm font-semibold hover:opacity-90 transition-all text-[#F7F5F0]"
+            className="group inline-flex items-center gap-2 rounded-full btn-espresso px-6 py-3.5 text-sm font-semibold hover:opacity-90 transition-all text-[#F7F5F0] shadow-md"
           >
             Get the Cockpit
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
@@ -84,7 +86,7 @@ export default function Hero() {
           <a
             href="#product"
             data-testid="hero-cta-secondary"
-            className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-7 py-3.5 text-sm font-semibold hover:bg-[var(--border)] transition-colors text-[var(--text-primary)]"
+            className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3.5 text-sm font-semibold hover:bg-[var(--border)]/20 transition-colors text-[var(--text-primary)] shadow-sm"
           >
             <Play size={14} strokeWidth={2} />
             See how it works

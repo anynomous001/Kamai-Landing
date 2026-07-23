@@ -19,6 +19,8 @@ const config: Config = {
         serif: ["var(--font-newsreader)", "Georgia", "serif"],
         headline: ["var(--font-manrope)", "sans-serif"],
         script: ["var(--font-newsreader)", "serif"],
+        bricolage: ["var(--font-bricolage)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
       colors: {
         background: "var(--background)",

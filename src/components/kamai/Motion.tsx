@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-const EASE = [0.76, 0, 0.24, 1];
+const EASE = [0.76, 0, 0.24, 1] as const;
 
 // Masked line-by-line reveal — split children by lines (array of strings)
 export function MaskedLines({ 
