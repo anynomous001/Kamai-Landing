@@ -78,7 +78,7 @@ export default function Hero() {
           <a
             href="#pricing"
             data-testid="hero-cta-primary"
-            className="group inline-flex items-center gap-2 rounded-full btn-espresso px-6 py-3.5 text-sm font-semibold hover:opacity-90 transition-all text-[#F7F5F0] shadow-md"
+            className="group inline-flex items-center gap-2 rounded-full btn-espresso px-6 py-3.5 text-sm font-semibold hover:opacity-90 transition-all shadow-md"
           >
             Get the Cockpit
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />

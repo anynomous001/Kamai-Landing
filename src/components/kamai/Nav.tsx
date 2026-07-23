@@ -70,7 +70,7 @@ export default function Nav() {
             <a
               href="#pricing"
               data-testid="nav-cta"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full btn-espresso px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity text-[#F7F5F0]"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full btn-espresso px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Get the Cockpit
               <ArrowUpRight size={14} strokeWidth={2} />

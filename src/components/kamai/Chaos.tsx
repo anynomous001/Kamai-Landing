@@ -19,9 +19,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const ESPRESSO = "#2D1B14";
 const ORANGE = "#EA580C";
-const OATMEAL = "#F7F5F0";
 
 const ITEMS = [
   { id: 1, icon: MessageCircle, label: "Orders",     text: "Orders live inside WhatsApp.",           tint: "#25D366", origin: { x: -320, y: -180, r: -14 } },
@@ -78,7 +76,7 @@ const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd }: ChaosCar
         transition={{ duration: 6 + index, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
-        <div className="relative flex items-center gap-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-black/[0.06] shadow-[0_8px_30px_-12px_rgba(45,27,20,0.25)] px-5 py-4">
+        <div className="relative flex items-center gap-4 rounded-2xl bg-[var(--surface)]/95 backdrop-blur-sm border border-[var(--border)] shadow-[var(--shadow-custom)] px-5 py-4 transition-colors duration-300">
           <motion.div style={{ opacity: ringOpacity }} className="pointer-events-none absolute inset-0 rounded-2xl ring-2" aria-hidden>
             <div className="absolute inset-0 rounded-2xl" style={{ boxShadow: `0 0 0 2px ${ORANGE}55` }} />
           </motion.div>
@@ -88,16 +86,16 @@ const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd }: ChaosCar
           </div>
 
           <div className="flex-1">
-            <div className="text-[11px] uppercase tracking-[0.18em] font-semibold text-left" style={{ color: `${ESPRESSO}80` }}>
+            <div className="text-[11px] uppercase tracking-[0.18em] font-semibold text-left text-[var(--text-secondary)]">
               {item.label}
             </div>
-            <div className="text-[15px] leading-snug font-medium text-left" style={{ color: ESPRESSO, fontFamily: "var(--font-inter), sans-serif" }}>
+            <div className="text-[15px] leading-snug font-medium text-left text-[var(--text-primary)]" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
               {item.text}
             </div>
           </div>
 
-          <motion.div style={{ opacity: indexOpacity }} className="text-[11px] font-mono tabular-nums" aria-hidden>
-            <span style={{ color: `${ESPRESSO}55` }}>{String(item.id).padStart(2, "0")}</span>
+          <motion.div style={{ opacity: indexOpacity }} className="text-[11px] font-mono tabular-nums text-[var(--text-secondary)] opacity-80" aria-hidden>
+            <span>{String(item.id).padStart(2, "0")}</span>
           </motion.div>
         </div>
       </motion.div>
@@ -120,9 +118,9 @@ const ChaosParticles = ({ opacity }: ChaosParticlesProps) => {
       {particles.map((p) => (
         <motion.span
           key={p.id}
-          className="absolute rounded-full"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s, background: `${ESPRESSO}22` }}
-          animate={{ y: [0, -14, 0], opacity: [0.2, 0.6, 0.2] }}
+          className="absolute rounded-full bg-[var(--text-primary)]"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s }}
+          animate={{ y: [0, -14, 0], opacity: [0.02, 0.08, 0.02] }}
           transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
         />
       ))}
@@ -163,12 +161,12 @@ export default function Chaos() {
     <section
       ref={sectionRef}
       data-testid="problem-section"
-      className="relative w-full"
-      style={{ background: OATMEAL, color: ESPRESSO, height: "260vh", fontFamily: "var(--font-inter), sans-serif" }}
+      className="relative w-full bg-[var(--background)] text-[var(--text-primary)] transition-colors duration-300"
+      style={{ height: "260vh", fontFamily: "var(--font-inter), sans-serif" }}
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply dark:mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.176 0 0 0 0 0.106 0 0 0 0 0.078 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
@@ -176,17 +174,17 @@ export default function Chaos() {
       />
 
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full blur-3xl" style={{ background: `${ORANGE}14` }} />
-        <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-24 h-[520px] w-[520px] rounded-full blur-3xl" style={{ background: `${ESPRESSO}10` }} />
+        <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full blur-3xl bg-[#EA580C]/10" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-24 h-[520px] w-[520px] rounded-full blur-3xl bg-[var(--text-primary)]/5" />
 
         <ChaosParticles opacity={particlesOpacity} />
 
         <div className="relative mx-auto flex h-full max-w-[1240px] flex-col px-6 md:px-10 lg:px-16 pt-12 md:pt-16">
           <motion.div style={{ y: headerY, opacity: headerOpacity }} className="flex items-center justify-between">
-            <div className="text-[11px] tracking-[0.32em] uppercase font-semibold text-left" style={{ color: `${ESPRESSO}80` }} data-testid="section-tag">
+            <div className="text-[11px] tracking-[0.32em] uppercase font-semibold text-left text-[var(--text-secondary)]" data-testid="section-tag">
               ( 02 · operational clarity )
             </div>
-            <div className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.24em] uppercase" style={{ color: `${ESPRESSO}66` }}>
+            <div className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.24em] uppercase text-[var(--text-secondary)] opacity-80">
               <Sparkles size={12} style={{ color: ORANGE }} />
               scroll to resolve
             </div>
@@ -195,8 +193,8 @@ export default function Chaos() {
           <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mt-6 md:mt-8 max-w-[720px] text-left">
             <h2
               data-testid="section-headline"
-              className="leading-[0.95] tracking-tight text-left"
-              style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, color: ESPRESSO, fontSize: "clamp(2.5rem, 5.6vw, 4.75rem)" }}
+              className="leading-[0.95] tracking-tight text-left text-[var(--text-primary)]"
+              style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, fontSize: "clamp(2.5rem, 5.6vw, 4.75rem)" }}
             >
               <span className="block">Your bakery has grown.</span>
               <span className="block">
@@ -206,17 +204,17 @@ export default function Chaos() {
                 hasn&apos;t.
               </span>
             </h2>
-            <p className="mt-5 text-[15px] md:text-base max-w-[540px] leading-relaxed text-left" style={{ color: `${ESPRESSO}A6` }}>
+            <p className="mt-5 text-[15px] md:text-base max-w-[540px] leading-relaxed text-left text-[var(--text-secondary)]">
               Five apps. A paper notebook. And a lot of mental gymnastics. Watch what happens when it all snaps into place.
             </p>
           </motion.div>
 
           <div className="relative mt-6 md:mt-8 flex-1">
             <div className="absolute left-2 md:left-4 top-4 bottom-8 flex flex-col items-center">
-              <div className="relative h-full w-[2px] rounded-full" style={{ background: `${ESPRESSO}18` }}>
+              <div className="relative h-full w-[2px] rounded-full bg-[var(--text-primary)]/10">
                 <motion.div data-testid="progress-rail" className="absolute left-0 top-0 w-full rounded-full" style={{ height: railProgress, background: ORANGE }} />
               </div>
-              <div className="mt-3 text-[9px] tracking-[0.24em] uppercase rotate-180" style={{ writingMode: "vertical-rl", color: `${ESPRESSO}55` }}>
+              <div className="mt-3 text-[9px] tracking-[0.24em] uppercase rotate-180 text-[var(--text-secondary)] opacity-80" style={{ writingMode: "vertical-rl" }}>
                 chaos · order
               </div>
             </div>
@@ -232,24 +230,24 @@ export default function Chaos() {
                 data-testid="baker-cockpit"
               >
                 <div
-                  className="relative rounded-[28px] p-5 pt-3"
+                  className="relative rounded-[28px] p-5 pt-3 transition-colors duration-300"
                   style={{
-                    background: "white",
-                    border: `1px solid ${ESPRESSO}14`,
-                    boxShadow: "0 30px 60px -30px rgba(45,27,20,0.35), 0 8px 20px -12px rgba(45,27,20,0.12)",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
+                    boxShadow: "var(--shadow-custom)",
                   }}
                 >
                   {/* Cockpit chrome — pinned above cards with relative z-50 */}
-                  <div className="relative z-50 flex items-center justify-between mb-4 px-1 bg-white rounded-t-[20px]">
+                  <div className="relative z-50 flex items-center justify-between mb-4 px-1 bg-[var(--surface)] rounded-t-[20px] transition-colors duration-300">
                     <div className="flex items-center gap-1.5">
                       <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#F87171" }} />
                       <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FBBF24" }} />
                       <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#34D399" }} />
                     </div>
-                    <div className="text-[10px] font-semibold tracking-[0.22em] uppercase" style={{ color: `${ESPRESSO}66` }}>
+                    <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[var(--text-secondary)] opacity-80">
                       Baker Cockpit
                     </div>
-                    <div className="text-[10px] font-mono" style={{ color: `${ESPRESSO}44` }}>
+                    <div className="text-[10px] font-mono text-[var(--text-secondary)] opacity-60">
                       /one‑view
                     </div>
                   </div>
@@ -282,7 +280,7 @@ export default function Chaos() {
             >
               <div className="flex items-center gap-3 max-w-[560px] text-center">
                 <ArrowRight size={18} style={{ color: ORANGE }} strokeWidth={2.4} />
-                <p className="text-[15px] md:text-[17px] font-semibold" style={{ color: ESPRESSO }}>
+                <p className="text-[15px] md:text-[17px] font-semibold text-[var(--text-primary)]">
                   Kamai brings everything together into{" "}
                   <span style={{ fontFamily: "var(--font-newsreader), serif", fontStyle: "italic", color: ORANGE, fontWeight: 400 }}>
                     one organized Baker Cockpit.
