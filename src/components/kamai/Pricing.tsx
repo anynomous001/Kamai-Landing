@@ -1,82 +1,124 @@
 'use client';
 
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { FadeUp, Reveal } from "./Motion";
-
-const features = [
-  "Unlimited Orders & Centralized Cockpit",
-  "Smart Profit Ledger & Real Margin Check",
-  "Customer CRM & Lifetime Spend Tracking",
-  "Visual Production & Delivery Calendar",
-  "WhatsApp Payment Links & Auto Receipts",
-  "Investment & Equipment Cost Tracker",
-  "Wholesale Marketplace Access",
-  "Unlimited Clients & Priority Support",
-];
 
 export default function Pricing() {
   return (
     <section id="pricing" className="py-24 md:py-32 border-t border-[var(--border)]" data-testid="pricing-section">
       <div className="mx-auto max-w-[1400px] px-6">
-        <FadeUp className="text-center max-w-3xl mx-auto mb-14">
+        <FadeUp className="text-center max-w-3xl mx-auto mb-6">
           <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--text-secondary)] mb-4">( 07 · Pricing )</p>
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] leading-[1] text-[var(--text-primary)]">
             <Reveal>Choose Your Baker Plan.</Reveal>
             <Reveal delay={0.08}>
-              <span className="italic-serif text-[#EA580C]">Everything to run a modern bakery.</span>
+              <span className="italic-serif text-[#EA580C]">Lock in early pricing, forever.</span>
             </Reveal>
           </h2>
         </FadeUp>
 
-        <FadeUp delay={0.15} className="max-w-2xl mx-auto">
-          <div className="relative rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-10 shadow-[0_60px_120px_-60px_rgba(45,27,20,0.35)]">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#EA580C] text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 shadow-md">
-              Full Suite
-            </div>
+        <FadeUp delay={0.1} className="text-center mb-14">
+          <p className="text-sm font-semibold text-[var(--text-primary)]">
+            30 days free · No card required upfront
+          </p>
+        </FadeUp>
 
-            <div className="text-center border-b border-[var(--border)] pb-8">
-              <p className="text-xs tracking-[0.15em] uppercase font-bold text-[var(--text-secondary)] mb-3">Baker Cockpit</p>
-              <div className="flex items-baseline justify-center gap-2">
-                <span className="text-6xl md:text-7xl font-extrabold tracking-[-0.04em] tabular-nums text-[var(--text-primary)]">₹299</span>
-                <span className="text-lg text-[var(--text-secondary)]">/ month</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-start">
+          {/* Early Adopter — primary plan */}
+          <FadeUp delay={0.15}>
+            <div className="relative rounded-3xl border-2 border-[#EA580C] bg-[var(--surface)] p-8 md:p-10 shadow-[0_60px_120px_-60px_rgba(45,27,20,0.35)]">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#EA580C] text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 shadow-md whitespace-nowrap">
+                Early Adopter Price
               </div>
-              <p className="mt-3 text-sm text-[var(--text-secondary)] max-w-sm mx-auto">
-                Less than one custom cake order. All 7 modules included.
+
+              <div className="text-center border-b border-[var(--border)] pb-8">
+                <p className="text-xs tracking-[0.15em] uppercase font-bold text-[var(--text-secondary)] mb-3">Early Adopter</p>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-6xl md:text-7xl font-extrabold tracking-[-0.04em] tabular-nums text-[var(--text-primary)]">₹149</span>
+                  <span className="text-lg text-[var(--text-secondary)]">/ month</span>
+                </div>
+                <p className="mt-3 text-sm text-[var(--text-secondary)] max-w-sm mx-auto">
+                  Lifetime price lock — this rate never increases for you, even after we raise prices later.
+                </p>
+              </div>
+
+              <ul className="mt-8 space-y-3 text-sm text-[var(--text-primary)]">
+                <li className="flex items-start gap-2.5">
+                  <span className="mt-0.5 h-4 w-4 rounded-full bg-[#EA580C]/15 grid place-items-center flex-shrink-0">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
+                  </span>
+                  <span>First 3 months free as part of your trial</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="mt-0.5 h-4 w-4 rounded-full bg-[#EA580C]/15 grid place-items-center flex-shrink-0">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
+                  </span>
+                  <span>Then billed automatically via UPI AutoPay (Razorpay)</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="mt-0.5 h-4 w-4 rounded-full bg-[#EA580C]/15 grid place-items-center flex-shrink-0">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
+                  </span>
+                  <span>No payment details required at signup</span>
+                </li>
+              </ul>
+
+              <a
+                href="https://app.getkamai.online/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="pricing-cta"
+                className="mt-8 group inline-flex w-full items-center justify-center gap-2 rounded-full btn-primary-orange px-6 py-4 text-base font-bold transition-all text-white"
+              >
+                Get Started Free
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+              </a>
+
+              <p className="mt-4 text-center text-xs text-[var(--text-secondary)]">
+                30 days free · No card required upfront
               </p>
             </div>
+          </FadeUp>
 
-            <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-[var(--text-primary)]">
-                  <span className="mt-0.5 h-4 w-4 rounded-full bg-[#EA580C]/15 grid place-items-center flex-shrink-0">
-                    <Check size={10} strokeWidth={3} className="text-[#EA580C]" />
-                  </span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Pro — future plan, not live yet */}
+          <FadeUp delay={0.22}>
+            <div className="relative rounded-3xl border border-[var(--border)] bg-[var(--surface)]/60 p-8 md:p-10 opacity-80">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--text-secondary)] text-[var(--surface)] text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 shadow-md whitespace-nowrap">
+                Coming Soon
+              </div>
 
-            <div className="mt-8 pt-6 border-t border-[var(--border)] text-sm text-[var(--text-secondary)] flex items-center justify-between">
-              <span>Best for: All independent bakers</span>
-              <span className="text-xs font-semibold">14-day free trial</span>
+              <div className="text-center border-b border-[var(--border)] pb-8">
+                <p className="text-xs tracking-[0.15em] uppercase font-bold text-[var(--text-secondary)] mb-3">Pro</p>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-6xl md:text-7xl font-extrabold tracking-[-0.04em] tabular-nums text-[var(--text-primary)]">₹299</span>
+                  <span className="text-lg text-[var(--text-secondary)]">/ month</span>
+                </div>
+                <p className="mt-3 text-sm text-[var(--text-secondary)] max-w-sm mx-auto">
+                  For bakeries scaling beyond the early tier.
+                </p>
+              </div>
+
+              <div className="mt-8 min-h-[124px] flex items-center justify-center">
+                <p className="text-sm text-[var(--text-secondary)] text-center">
+                  Details coming soon.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                disabled
+                data-testid="pricing-cta-pro"
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--border)] px-6 py-4 text-base font-bold text-[var(--text-secondary)] cursor-not-allowed"
+              >
+                Coming Soon
+              </button>
+
+              <p className="mt-4 text-center text-xs text-[var(--text-secondary)]">
+                Not yet available
+              </p>
             </div>
-
-            <a
-              href="https://app.getkamai.online/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="pricing-cta"
-              className="mt-6 group inline-flex w-full items-center justify-center gap-2 rounded-full btn-primary-orange px-6 py-4 text-base font-bold transition-all text-white"
-            >
-              Get Started — ₹299/mo
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-            </a>
-
-            <p className="mt-4 text-center text-xs text-[var(--text-secondary)]">
-              Cancel anytime · 14-day free trial
-            </p>
-          </div>
-        </FadeUp>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );

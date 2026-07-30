@@ -15,7 +15,7 @@ const strip2 = [
   "Always Know Your Profit",
   "Every Customer Saved",
   "One Baker Cockpit",
-  "₹299 / month",
+  "₹149 / month",
   "Kamai OS",
 ];
 

@@ -41,7 +41,7 @@ export default function FinalCTA() {
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </a>
           <p className="text-sm text-[#F7F5F0]/70">
-            ₹299/month · No setup fee · Cancel anytime
+            ₹149/month · No setup fee · Cancel anytime
           </p>
         </FadeUp>
       </div>

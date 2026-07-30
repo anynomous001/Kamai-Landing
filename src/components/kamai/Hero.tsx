@@ -95,7 +95,7 @@ export default function Hero() {
 
         {/* Trust checks */}
         <FadeUp delay={1.45} className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-[var(--text-secondary)]">
-          <span className="inline-flex items-center gap-2"><Check /> ₹299/month</span>
+          <span className="inline-flex items-center gap-2"><Check /> ₹149/month</span>
           <span className="inline-flex items-center gap-2"><Check /> No setup fee</span>
           <span className="inline-flex items-center gap-2"><Check /> Cancel anytime</span>
         </FadeUp>
