@@ -208,13 +208,12 @@ export default function DashboardMockup() {
                       </div>
                       <span className="text-xs text-emerald-600 font-semibold">▲ 12.4%</span>
                     </div>
-                    <div className="flex items-end justify-between h-32 gap-2">
+                    <div className="flex items-stretch justify-between h-32 gap-2">
                       {bars.map((b, i) => (
-                        <div key={b.d} className="flex-1 flex flex-col items-center gap-1.5">
+                        <div key={b.d} className="flex-1 flex flex-col items-center justify-end gap-1.5 h-full">
                           <motion.div
                             initial={{ height: 0 }}
-                            whileInView={{ height: `${b.h}%` }}
-                            viewport={{ once: true }}
+                            animate={{ height: `${b.h}%` }}
                             transition={{ duration: 0.9, delay: i * 0.06, ease: [0.76, 0, 0.24, 1] }}
                             className={`w-full rounded-t-md ${i === 5 ? "bg-[#EA580C]" : "bg-[#2D1B14]"}`}
                           />
@@ -245,12 +244,12 @@ export default function DashboardMockup() {
                     {orders.map((o, i) => (
                       <div
                         key={i}
-                        className="grid grid-cols-12 items-center px-5 py-3 border-b border-[var(--border)] last:border-b-0 text-xs md:text-sm"
+                        className="grid grid-cols-12 items-center px-5 py-3 border-b border-[var(--border)] last:border-b-0 text-xs md:text-sm gap-2"
                       >
-                        <span className="col-span-3 font-semibold truncate text-[var(--text-primary)]">{o.name}</span>
-                        <span className="col-span-5 text-[var(--text-secondary)] truncate">{o.item}</span>
-                        <span className="col-span-2 font-semibold tabular-nums text-[var(--text-primary)]">{o.amt}</span>
-                        <span className="col-span-2 text-right">
+                        <span className="col-span-5 md:col-span-3 font-semibold truncate text-[var(--text-primary)]">{o.name}</span>
+                        <span className="hidden md:inline col-span-5 text-[var(--text-secondary)] truncate">{o.item}</span>
+                        <span className="col-span-3 md:col-span-2 font-semibold tabular-nums text-[var(--text-primary)]">{o.amt}</span>
+                        <span className="col-span-4 md:col-span-2 text-right">
                           <span
                             className={`inline-block rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase ${
                               o.status === "Completed"

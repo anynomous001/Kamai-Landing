@@ -173,7 +173,7 @@ export default function Chaos() {
         }}
       />
 
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full blur-3xl bg-[#EA580C]/10" />
         <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-24 h-[520px] w-[520px] rounded-full blur-3xl bg-[var(--text-primary)]/5" />
 

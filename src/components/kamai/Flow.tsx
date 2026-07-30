@@ -73,7 +73,7 @@ export default function Flow() {
                 </div>
 
                 {/* Stepper Dot */}
-                <div className="absolute left-4 md:left-1/2 top-1 -translate-x-1/2 h-5 w-5 rounded-full bg-[var(--background)] border-2 border-[#EA580C]">
+                <div className="absolute left-6 md:left-1/2 top-1 -translate-x-1/2 h-5 w-5 rounded-full bg-[var(--background)] border-2 border-[#EA580C]">
                   <div className="absolute inset-1 rounded-full bg-[#EA580C]" />
                 </div>
               </motion.div>

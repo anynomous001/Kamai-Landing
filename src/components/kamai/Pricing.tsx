@@ -62,7 +62,9 @@ export default function Pricing() {
             </div>
 
             <a
-              href="#"
+              href="https://app.getkamai.online/"
+              target="_blank"
+              rel="noopener noreferrer"
               data-testid="pricing-cta"
               className="mt-6 group inline-flex w-full items-center justify-center gap-2 rounded-full btn-primary-orange px-6 py-4 text-base font-bold transition-all text-white"
             >

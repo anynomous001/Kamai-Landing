@@ -31,7 +31,9 @@ export default function FinalCTA() {
 
         <FadeUp delay={0.3} className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
           <a
-            href="#"
+            href="https://app.getkamai.online/"
+            target="_blank"
+            rel="noopener noreferrer"
             data-testid="final-cta-button"
             className="group inline-flex items-center gap-2 rounded-full btn-primary-orange px-8 py-4 text-base font-bold text-white shadow-lg"
           >

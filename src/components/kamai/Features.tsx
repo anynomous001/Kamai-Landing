@@ -222,10 +222,10 @@ function FeatureVisual({ kind }: { kind: FeatureItem["visual"] }) {
           ["Almond flour · 2kg", "Nutshop", "₹1,600"],
           ["Fondant · 1kg", "SugarCraft", "₹680"],
         ].map(([n, v, p]) => (
-          <div key={n} className="grid grid-cols-6 items-center py-3 border-b border-[var(--border)] text-sm">
-            <span className="col-span-3 font-semibold truncate text-[var(--text-primary)]">{n}</span>
-            <span className="col-span-2 text-[var(--text-secondary)] truncate">{v}</span>
-            <span className="col-span-1 text-right font-bold tabular-nums text-[var(--text-primary)]">{p}</span>
+          <div key={n} className="grid grid-cols-12 items-center py-3 border-b border-[var(--border)] text-sm gap-2">
+            <span className="col-span-6 sm:col-span-3 font-semibold truncate text-[var(--text-primary)]">{n}</span>
+            <span className="hidden sm:inline col-span-3 text-[var(--text-secondary)] truncate">{v}</span>
+            <span className="col-span-6 sm:col-span-6 text-right font-bold tabular-nums text-[var(--text-primary)]">{p}</span>
           </div>
         ))}
         <div className="mt-4 flex items-center justify-between">
@@ -255,16 +255,20 @@ function FeatureVisual({ kind }: { kind: FeatureItem["visual"] }) {
         ["Priya Kulkarni", "Wedding tiers", "₹64,200", "8 orders"],
         ["Sneha Mehta", "Fondant birthdays", "₹28,900", "19 orders"],
       ].map(([n, tag, ltv, o]) => (
-        <div key={n} className="grid grid-cols-12 gap-3 items-center py-3 border-b border-[var(--border)] text-sm">
-          <div className="col-span-1 h-9 w-9 rounded-full bg-gradient-to-br from-[#EA580C] to-[#2D1B14] grid place-items-center text-[#F7F5F0] font-bold text-xs">
-            {n.split(" ").map((x) => x[0]).join("")}
+        <div key={n} className="flex items-center gap-3 py-3 border-b border-[var(--border)] text-sm justify-between gap-x-2">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#EA580C] to-[#2D1B14] grid place-items-center text-[#F7F5F0] font-bold text-xs shrink-0">
+              {n.split(" ").map((x) => x[0]).join("")}
+            </div>
+            <div className="min-w-0">
+              <p className="font-bold text-[var(--text-primary)] truncate">{n}</p>
+              <p className="text-xs text-[var(--text-secondary)] truncate">{tag}</p>
+            </div>
           </div>
-          <div className="col-span-5">
-            <p className="font-bold text-[var(--text-primary)]">{n}</p>
-            <p className="text-xs text-[var(--text-secondary)]">{tag}</p>
+          <div className="flex items-center gap-4 sm:gap-6 shrink-0 text-right">
+            <span className="font-bold tabular-nums text-[var(--text-primary)]">{ltv}</span>
+            <span className="text-xs text-[var(--text-secondary)] tabular-nums">{o}</span>
           </div>
-          <span className="col-span-3 font-bold tabular-nums text-right md:text-left text-[var(--text-primary)]">{ltv}</span>
-          <span className="col-span-3 text-xs text-[var(--text-secondary)] text-right tabular-nums">{o}</span>
         </div>
       ))}
     </div>

@@ -38,12 +38,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.4 }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)] shadow-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-[10px] sm:text-xs font-medium text-[var(--text-primary)] shadow-sm text-center">
             <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
             Built for India&apos;s independent bakers.
             <span className="text-[var(--text-secondary)] font-normal">(AD · PK · SM)</span>
           </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-medium text-[var(--text-primary)] shadow-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-[10px] sm:text-xs font-medium text-[var(--text-primary)] shadow-sm text-center">
             <span className="relative flex h-2 w-2">
               <span className="pulse-dot absolute inset-0 rounded-full bg-emerald-500" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -53,7 +53,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <h1 className="text-center font-extrabold tracking-[-0.045em] leading-[0.95] text-[var(--text-primary)] text-[13vw] sm:text-[9vw] md:text-[7.5vw] lg:text-[112px]">
+        <h1 className="text-center font-extrabold tracking-[-0.045em] leading-[1.0] sm:leading-[0.95] text-[var(--text-primary)] text-[clamp(2.2rem,8vw,7rem)]">
           <MaskedLines
             lines={[
               <>Run Your Bakery.</>,
