@@ -147,9 +147,9 @@ export default function DashboardMockup() {
             </div>
 
             {/* App body */}
-            <div className="grid grid-cols-12 min-h-[560px]">
-              {/* Sidebar */}
-              <aside className="col-span-3 md:col-span-2 border-r border-[var(--border)] bg-[var(--background)] p-4 space-y-1">
+            <div className="grid grid-cols-12 md:min-h-[560px]">
+              {/* Sidebar — hidden on mobile so the mockup reads as a phone screen, not a squeezed desktop layout */}
+              <aside className="hidden md:block md:col-span-2 border-r border-[var(--border)] bg-[var(--background)] p-4 space-y-1">
                 <div className="flex items-center gap-2 mb-4 px-2">
                   <KamaiLogo height={28} />
                 </div>
@@ -169,7 +169,7 @@ export default function DashboardMockup() {
               </aside>
 
               {/* Main */}
-              <div className="col-span-9 md:col-span-10 p-5 md:p-7 space-y-5 bg-[var(--surface)]">
+              <div className="col-span-12 md:col-span-10 p-5 md:p-7 space-y-5 bg-[var(--surface)]">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs tracking-[0.15em] uppercase font-bold text-[var(--text-secondary)] mb-1">Overview · This month</p>
@@ -223,7 +223,7 @@ export default function DashboardMockup() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-2 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-5">
+                  <div className="hidden md:block lg:col-span-2 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-5">
                     <p className="text-xs tracking-[0.1em] uppercase font-bold text-[var(--text-secondary)] mb-4">Order status</p>
                     <Donut />
                     <div className="mt-4 space-y-2 text-xs">
@@ -234,8 +234,8 @@ export default function DashboardMockup() {
                   </div>
                 </div>
 
-                {/* Orders */}
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)] overflow-hidden">
+                {/* Orders — hidden on mobile to keep the mockup short and phone-proportioned */}
+                <div className="hidden md:block rounded-2xl border border-[var(--border)] bg-[var(--background)] overflow-hidden">
                   <div className="px-5 py-3 border-b border-[var(--border)] flex items-center justify-between">
                     <p className="text-xs tracking-[0.1em] uppercase font-bold text-[var(--text-secondary)]">Recent orders</p>
                     <span className="text-[10px] text-[var(--text-secondary)]">3 of 34</span>

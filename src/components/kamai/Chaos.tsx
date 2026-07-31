@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -15,11 +15,29 @@ import {
   Users,
   BookOpen,
   Brain,
-  ArrowRight,
   Sparkles,
 } from "lucide-react";
 
 const ORANGE = "#EA580C";
+
+// Framer Motion owns the full `transform` property once any x/y/scale/rotate
+// motion value is set via `style`, silently discarding the Tailwind
+// `-translate-x-1/2` centering class. The resulting rightward offset (roughly
+// half the element's own width) is barely visible on wide desktop viewports
+// but clips the cockpit almost entirely on phones. This hook lets us apply a
+// motion-value-based centering compensation on mobile only, leaving desktop
+// pixel-identical to before.
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 const ITEMS = [
   { id: 1, icon: MessageCircle, label: "Orders",     text: "Orders live inside WhatsApp.",           tint: "#25D366", origin: { x: -320, y: -180, r: -14 } },
@@ -35,9 +53,10 @@ interface ChaosCardProps {
   progress: MotionValue<number>;
   resolveStart: number;
   resolveEnd: number;
+  isMobile: boolean;
 }
 
-const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd }: ChaosCardProps) => {
+const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd, isMobile }: ChaosCardProps) => {
   const Icon = item.icon;
   const total = ITEMS.length;
 
@@ -54,6 +73,12 @@ const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd }: ChaosCar
   const sy = useSpring(y, { stiffness: 90, damping: 20, mass: 0.6 });
   const sr = useSpring(rotate, { stiffness: 90, damping: 20, mass: 0.6 });
 
+  // On mobile, `-translate-x-1/2` gets clobbered by Framer Motion's own
+  // transform management (see useIsMobile above), so fold the -50%
+  // self-centering into the animated x offset via calc(). Desktop keeps
+  // using `sx` directly, exactly as before.
+  const sxCentered = useTransform(sx, (v) => `calc(-50% + ${v}px)`);
+
   const ringOpacity = useTransform(progress, [cardEnd - 0.02, cardEnd, cardEnd + 0.08], [0, 1, 0]);
   const indexOpacity = useTransform(progress, [cardEnd - 0.02, cardEnd], [0, 1]);
 
@@ -61,7 +86,7 @@ const ChaosCard = ({ item, index, progress, resolveStart, resolveEnd }: ChaosCar
     <motion.div
       data-testid={`chaos-card-${item.id}`}
       style={{
-        x: sx,
+        x: isMobile ? sxCentered : sx,
         y: sy,
         rotate: sr,
         scale,
@@ -131,6 +156,7 @@ const ChaosParticles = ({ opacity }: ChaosParticlesProps) => {
 export default function Chaos() {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -150,9 +176,6 @@ export default function Chaos() {
   // so reverse scroll still fades it out naturally — exactly what you asked for.
   const cockpitOpacity = useTransform(scrollYProgress, [0.05, 0.2, 1], [0, 1, 1]);
   const cockpitScale   = useTransform(scrollYProgress, [0.05, 0.2, 1], [0.92, 1, 1]);
-
-  const resolveOpacity = useTransform(scrollYProgress, [0.78, 0.92], [0, 1]);
-  const resolveY = useTransform(scrollYProgress, [0.78, 0.92], [24, 0]);
 
   const railProgress = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
   const chaosLetters = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -225,8 +248,8 @@ export default function Chaos() {
                    zIndex: 5 keeps the cockpit body below the chaos cards,
                    but the chrome header still sits above everything. */}
               <motion.div
-                style={{ opacity: cockpitOpacity, scale: cockpitScale, zIndex: 5 }}
-                className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[480px] max-w-[92vw] ml-3 isolate"
+                style={{ opacity: cockpitOpacity, scale: cockpitScale, x: isMobile ? "-50%" : undefined, zIndex: 5 }}
+                className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[480px] max-w-[92vw] ml-0 md:ml-3 isolate"
                 data-testid="baker-cockpit"
               >
                 <div
@@ -257,7 +280,7 @@ export default function Chaos() {
               </motion.div>
 
               {/* Chaos cards */}
-              <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[480px] max-w-[92vw] pointer-events-none pt-[64px] ml-3 z-10">
+              <div className="absolute left-1/2 top-[6%] -translate-x-1/2 w-[480px] max-w-[92vw] pointer-events-none pt-[64px] ml-0 md:ml-3 z-10">
                 <div className="relative w-full h-full">
                   {ITEMS.map((item, i) => (
                     <ChaosCard
@@ -267,34 +290,18 @@ export default function Chaos() {
                       progress={scrollYProgress}
                       resolveStart={RESOLVE_START}
                       resolveEnd={RESOLVE_END}
+                      isMobile={isMobile}
                     />
                   ))}
                 </div>
               </div>
             </div>
-
-            <motion.div
-              style={{ opacity: resolveOpacity, y: resolveY }}
-              className="absolute left-0 right-0 bottom-4 md:bottom-6 flex justify-center"
-              data-testid="resolution-block"
-            >
-              <div className="flex items-center gap-3 max-w-[560px] text-center">
-                <ArrowRight size={18} style={{ color: ORANGE }} strokeWidth={2.4} />
-                <p className="text-[15px] md:text-[17px] font-semibold text-[var(--text-primary)]">
-                  Kamai brings everything together into{" "}
-                  <span style={{ fontFamily: "var(--font-newsreader), serif", fontStyle: "italic", color: ORANGE, fontWeight: 400 }}>
-                    one organized Baker Cockpit.
-                  </span>
-                </p>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>
 
       <ul className="sr-only" aria-label="Current fragmented workflow">
         {ITEMS.map((i) => (<li key={i.id}>{i.text}</li>))}
-        <li>Kamai brings everything together into one organized Baker Cockpit.</li>
       </ul>
 
       <motion.span aria-hidden className="hidden" style={{ opacity: chaosLetters }} />
