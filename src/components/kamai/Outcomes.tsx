@@ -22,12 +22,12 @@ export default function Outcomes() {
             <div key={i} className="bg-[var(--surface)] p-8 md:p-12 group hover:bg-[var(--border)]/20 transition-colors relative min-h-[200px] flex flex-col justify-between">
               <span className="text-xs font-bold text-[var(--text-secondary)] absolute top-6 right-6">{o.num}</span>
               <div className="mt-8">
-                <h3 className="text-3xl md:text-5xl font-extrabold tracking-[-0.03em] leading-tight text-[var(--text-primary)]">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.03em] leading-tight text-[var(--text-primary)]">
                   <Reveal delay={i * 0.06}>{o.top}</Reveal>
                   <Reveal delay={i * 0.06 + 0.08}>
                     <span className="italic-serif text-[#EA580C]">{o.bottom}</span>
                   </Reveal>
-                </h3>
+                </h2>
               </div>
             </div>
           ))}

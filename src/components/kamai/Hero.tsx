@@ -93,6 +93,11 @@ export default function Hero() {
           </a>
         </FadeUp>
 
+        {/* Trial + lock-in trust line */}
+        <FadeUp delay={1.38} className="mt-4 text-center text-xs sm:text-sm text-[var(--text-secondary)]">
+          30 days free · No card needed · Price locked for life
+        </FadeUp>
+
         {/* Trust checks */}
         <FadeUp delay={1.45} className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-[var(--text-secondary)]">
           <span className="inline-flex items-center gap-2"><Check /> ₹149/month</span>

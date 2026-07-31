@@ -19,6 +19,10 @@ const faqs = [
     a: "Yes. The Baker Cockpit is fully responsive on mobile, tablet, and desktop. Most of our bakers manage everything from their phone while shortlisting orders and prepping ingredients.",
   },
   {
+    q: "How long is the free trial?",
+    a: "30 days, with no card required to start. And if you sign up as an Early Adopter, your ₹149/month rate is locked in for life — it won't go up even after we raise prices for later bakers.",
+  },
+  {
     q: "What if I want to cancel or pause?",
     a: "Cancel anytime with a single click — no calls, no forms, no fine print. You can also pause your account during festival breaks and pick up right where you left off.",
   },
